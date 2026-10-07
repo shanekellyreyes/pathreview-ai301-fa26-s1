@@ -55,6 +55,11 @@ class ContextManager:
         """
         return dict(self.results)
 
+    def reset(self) -> None:
+        """Clear all cached tool results."""
+        self.results = {}
+        logger.info("context_manager_reset")
+
     @staticmethod
     def hash_input(input_data: dict) -> str:
         """Hash input data for consistent memoization.

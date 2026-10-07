@@ -41,6 +41,11 @@ class Orchestrator:
         """
         logger.info("orchestrator_start", profile_id=profile_id)
 
+        # Clear stale state from any prior review on this profile/instance
+        self.context_manager.reset()
+        if self.session_store:
+            self.session_store.delete(profile_id)
+
         # Build execution plan
         plan = self._build_plan(profile_data)
 
